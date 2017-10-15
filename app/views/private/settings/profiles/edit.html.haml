@@ -1,0 +1,19 @@
+.col-sm-3
+  = render partial: 'private/settings/shared/menu'
+
+.col-sm-9
+  .row
+    = bootstrap_form_for current_user, url: settings_profiles_path, method: :PUT do |f|
+
+      = f.alert_message  '以下の項目を修正してください。'
+
+      = f.text_field :user_name
+
+      = f.text_area :user_description
+      //- binding.pry
+      = image_tag current_user.avatar(:thumb) 
+      = f.file_field :avatar, class: 'form-control image-field'
+
+      .form-group
+        .col-sm-offset-2.col-sm-10
+          = f.submit '更新する', class: 'btn btn-primary'

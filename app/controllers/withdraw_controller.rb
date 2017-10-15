@@ -1,0 +1,2 @@
+class WithdrawController < ApplicationController
+end

@@ -1,0 +1,50 @@
+!!!
+%html
+  %head
+    %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %title Rails51BlogSample
+  %body
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
+    = javascript_include_tag 'application', 'data-turbolinks-track' => true
+    = csrf_meta_tags
+
+
+
+    %nav.navbar.navbar-default{:role => "navigation"}
+      .container-fluid
+        .navbar-header
+          %buttion.navbar-toggle{"data-target" => "#bs-example-navbar-collapse-1", "data-toggle" => "collapse", :type => "button"}
+            %span.sr-only Toggle navigation
+            %span.icon-bar
+            %span.icon-bar
+            %span.icon-bar
+          %a.navbar-brand{:href => '/'} RAILS BLOG SAMPLE!
+
+        #bs-example-navbar-collapse-1.collapse.navbar-collapse
+          %ul.nav.navbar-nav.navbar-right
+            - if current_user
+              %li
+                = link_to '+ 新しい記事を作成する', new_article_path
+              %li
+                = link_to edit_settings_profiles_path, style: 'padding-right: 10px;' do
+                  = image_tag current_user.avatar(:thumb), width: 20, height: 20
+                  = current_user.user_nickname
+              %li.dropdown
+                = link_to '#', class: 'dropdown-toggle', 'data-toggle' => 'dropdown', style: 'padding-left: 10px;' do
+                  %span.caret
+                %ul.dropdown-menu
+                  %li= link_to 'プロフィール設定', edit_settings_profiles_path 
+                  %li.divider
+                  %li= link_to 'ログアウト', destroy_user_session_path(:authenticity_token => form_authenticity_token()), method: :delete
+            - else
+              %li= link_to 'はじめる', new_user_registration_path
+              %li= link_to 'ログイン', new_user_session_path
+              %li= link_to 'twitterログイン', user_twitter_omniauth_authorize_path 
+              %li= link_to 'facebookログイン', user_facebook_omniauth_authorize_path 
+    = yield
+  
+  %footer.text-center
+    %div
+      作った人：negabaro kim
+    %div
+      #{link_to 'Twitter', 'https://twitter.com/negabaro', target: :_blank} | #{link_to 'FB', 'https://www.facebook.com/negabaro', target: :_blank}

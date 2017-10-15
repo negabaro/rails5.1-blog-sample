@@ -1,0 +1,18 @@
+.page-header
+  %h1 ログイン
+
+= bootstrap_form_for(resource, url: session_path(resource)) do |f|
+
+  = f.email_field :email, autofocus: true
+
+  = f.password_field :password, autocomplete: "off"
+
+  - if devise_mapping.rememberable?
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = f.check_box :remember_me
+
+    .form-group
+      .col-sm-offset-2.col-sm-10
+        = f.submit '送信', class: 'btn btn-primary btn-lg'
+

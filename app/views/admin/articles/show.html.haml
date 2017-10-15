@@ -1,0 +1,17 @@
+this page is fuck of show
+%h1
+  = @article.title
+
+.well
+  = @article.body_source
+
+%div
+  公開日時: #{@article.updated_at}
+
+%div
+  = link_to '編集する',edit_article_path(@article) ,class: 'btn btn-default btn-lg'
+  .pull-right
+    = link_to '削除する', @article, :method => :delete, :data => { :confirm => '本当によろしいですか?' }, class: 'btn btn-danger btn-lg'
+//  = raw @article.body_source
+%div
+  = render partial: 'comments/form', locals: {comment: @comment}

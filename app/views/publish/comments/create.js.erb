@@ -1,0 +1,7 @@
+<% if @comment.errors.any? %>
+  $('.js_comment_form').html('<%= j render(partial: 'form', locals: {comment: @comment}) %>')
+<% else %>
+  //formが二つできちゃう不具合がありコメントアウト
+  //$('.js_comment_form').html('<%= j render(partial: 'form', locals: {comment: Comment.new(article_id: @comment.article_id)}) %>')
+  $('.js_comments').html('<%= j render(partial: 'publish/articles/comments', locals: {comments: @article.comments.order(:created_at)}) %>')
+<% end %>

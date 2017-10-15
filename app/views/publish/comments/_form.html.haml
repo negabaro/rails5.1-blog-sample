@@ -1,0 +1,7 @@
+.js_comment_form
+  %div
+
+= bootstrap_form_for comment, url: comments_path, method: :post, remote: true do |f|
+  = f.hidden_field :article_id
+  = f.text_area :body
+  = f.submit '送信'

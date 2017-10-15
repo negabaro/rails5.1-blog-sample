@@ -1,0 +1,9 @@
+.js_comments
+  - comments.each do |comment|
+    %div{style: 'margin-bottom: 5px;'}
+      /- binding.pry
+      = comment.user.user_nickname
+      .pull-right
+        = l comment.created_at
+    %div.well.well-sm
+      = simple_format comment.body, wrapper_tag: ''
