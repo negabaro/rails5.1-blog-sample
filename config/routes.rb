@@ -5,6 +5,7 @@ Rails.application.routes.draw do
     resources :articles
 
     namespace :settings do
+      resource :withdrawals
       resource :profiles
       resource :accounts
       resource :passwords
