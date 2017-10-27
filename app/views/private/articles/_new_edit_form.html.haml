@@ -1,10 +1,12 @@
-= bootstrap_form_for(@article) do |f|
+= bootstrap_form_for(@article, layout: :horizontal) do |f|
   = f.text_field :title, autofocus: true
   = f.text_area :body_source, rows: 20
 
   .form-group
     .col-sm-offset-2.col-sm-10
-      = f.button '公開する', name: 'ope[cmd]', value: 'publish', class: 'btn btn-lg btn-default'
+      = f.button '下書きを保存', name: 'ope[cmd]', value: 'save', class: 'btn btn-lg btn-default'
+      - if @article.draft?
+        = f.button '公開する', name: 'ope[cmd]', value: 'publish', class: 'btn btn-lg btn-default'
   
    
   

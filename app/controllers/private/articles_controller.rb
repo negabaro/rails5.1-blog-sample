@@ -26,10 +26,24 @@ class Private::ArticlesController < ApplicationController
     #@article = Article.new(article_params)
     #@article = current_user.articles(article_params)
     @article = current_user.articles.build(article_params)
-    
-    @article.save!
-
-    redirect_to @article
+    if @article.valid?
+      @article.save!
+      case params[:ope][:cmd]
+      when 'publish'
+        @article.publish!
+        puts "hi this is publish zone"
+        flash[:success] = '記事を公開しました。'
+      when 'save'
+        #@article.draft!
+        puts "hi this is draft zone"
+        flash[:success] = '記事を保存しました。'
+      else
+        raise
+      end
+      redirect_to @article
+    else
+      redirect_to :new
+    end
     #show
 
   end
@@ -49,6 +63,18 @@ class Private::ArticlesController < ApplicationController
     @article.destroy
     redirect_to article_path
 
+  end
+
+  def run_publish
+    @article.publish?
+    flash[:success] = '記事を公開しました!'
+    redirect_to @article
+  end
+
+  def run_draft
+    @article.draft?
+    flash[:success] = '記事を下書きしました!'
+    redirect_to @article
   end
 
   private
