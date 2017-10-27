@@ -17,6 +17,10 @@ end
 gem 'rails', '~> 5.1.4'
 gem 'haml-rails'
 gem 'erb2haml'
+gem 'aasm'
+gem 'gretel'
+
+gem 'redcarpet'
 
 gem 'devise'
 gem 'omniauth-twitter'

@@ -1,6 +1,8 @@
 GEM
   remote: https://rubygems.org/
   specs:
+    aasm (4.12.2)
+      concurrent-ruby (~> 1.0)
     actioncable (5.1.4)
       actionpack (= 5.1.4)
       nio4r (~> 2.0)
@@ -522,6 +524,8 @@ GEM
     ffi (1.9.18)
     globalid (0.4.0)
       activesupport (>= 4.2.0)
+    gretel (3.0.9)
+      rails (>= 3.1.0)
     haml (5.0.3)
       temple (>= 0.8.0)
       tilt
@@ -707,6 +711,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  aasm
   aws-sdk
   bootstrap-sass
   bootstrap_form
@@ -715,6 +720,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   devise
   erb2haml
+  gretel
   haml-rails
   jbuilder (~> 2.5)
   jquery-rails
