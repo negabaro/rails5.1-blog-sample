@@ -3,10 +3,10 @@
   %head
     %meta{:content => "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
     %title Rails51BlogSample
-  %body
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true
     = javascript_include_tag 'application', 'data-turbolinks-track' => true
     = csrf_meta_tags
+  %body
 
 
 
@@ -41,6 +41,16 @@
               %li= link_to 'ログイン', new_user_session_path
               %li= link_to 'twitterログイン', user_twitter_omniauth_authorize_path 
               %li= link_to 'facebookログイン', user_facebook_omniauth_authorize_path 
+  .container
+    = render partial: 'shared/breadcrumbs'
+    //%ol.breadcrumbs
+    //%ol.breadcrumb
+    //  = breadcrumbs
+  .container
+    - flash.each do |type, msg|
+      %div{class: "alert alert-#{type}"}=msg
+
+  %div{class: content_for?(:container_lcass) ? yield(:container_class) : 'container'}
     = yield
   
   %footer.text-center
