@@ -17,7 +17,7 @@ development:
   <<: *default
   database: rails5-blog-sample_development
   username: postgres
-  password: cjfrkaus
+  password: <%= ENV['DB_PASSWORD'] %>
 
 
 # Warning: The database defined as "test" will be erased and
